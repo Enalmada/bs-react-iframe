@@ -1,0 +1,41 @@
+{
+  "name": "bs-react-iframe",
+  "version": "1.0.0",
+  "description": "Bucklescript bindings for react-iframe",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Enalmada/bs-react-iframe"
+  },
+  "scripts": {
+    "build": "bsb -clean-world -make-world",
+    "clean": "bsb -clean-world",
+    "test": "exit 0",
+    "preversion": "yarn run clean",
+    "changelog": "auto-changelog --template keepachangelog"
+  },
+  "main": "src/Iframe.bs.js",
+  "license": "MIT",
+  "peerDependencies": {
+    "react-iframe": ">=1.3.3",
+    "bs-platform": "^4.0.5",
+    "reason-react": ">=0.5.3"
+  },
+  "devDependencies": {
+    "bs-platform": "^4.0.6",
+    "react": "16.6.0",
+    "react-dom": "16.6.0",
+    "reason-react": ">=0.5.3"
+  },
+  "files": [
+    "src",
+    "bsconfig.json"
+  ],
+  "keywords": [
+    "next-iframe",
+    "react",
+    "reason",
+    "reasonml",
+    "ocaml",
+    "bucklescript"
+  ]
+}
