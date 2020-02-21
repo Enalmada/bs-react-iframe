@@ -10,6 +10,7 @@ module Frame = {
       ~src: string=?,
       ~allowFullScreen: bool=?,
       ~position: [@bs.string] [
+                   | [@bs.as "relative"] `Relative
                    | [@bs.as "absolute"] `Absolute
                    | [@bs.as "fixed"] `Fixed
                    | [@bs.as "sticky"] `Sticky
