@@ -1,5 +1,3 @@
-[@bs.module "react-iframe"] external reactClass: ReasonReact.reactClass = "default";
-
 /*
  url (required) - string the iframe url
 
@@ -24,59 +22,33 @@
  allow (optional) - add optional allow values ("geolocation microphone camera midi encrypted-media")
  */
 
-[@bs.obj]
-external makeProps:
-  (
-    ~url: string,
-    ~position: string=?,
-    ~id: string=?,
-    ~className: string=?,
-    ~display: string=?,
-    ~height: string=?,
-    ~width: string=?,
-    ~allowFullScreen: bool=?,
-    ~styles: ReactDOMRe.Style.t=?,
-    ~style: ReactDOMRe.Style.t=?,
-    ~sandbox: string=?,
-    ~allow: string=?,
-    unit
-  ) =>
-  _ =
-  "";
-
-let make =
+module Frame = {
+  [@bs.module "react-iframe"] [@react.component]
+  external make:
     (
-      ~url,
-      ~position=?,
-      ~id=?,
-      ~className=?,
-      ~display=?,
-      ~height=?,
-      ~width=?,
-      ~allowFullScreen=?,
-      ~styles=?,
-      ~style=?,
-      ~sandbox=?,
-      ~allow=?,
-      children,
+      ~url: string,
+      ~position: string=?,
+      ~id: string=?,
+      ~className: string=?,
+      ~display: string=?,
+      ~height: string=?,
+      ~width: string=?,
+      ~allowFullScreen: bool=?,
+      ~styles: ReactDOMRe.Style.t=?,
+      ~style: ReactDOMRe.Style.t=?,
+      ~sandbox: [@bs.string] [
+                  | [@bs.as "allow-modals"] `AllowModals
+                  | [@bs.as "allow-forms"] `AllowForms
+                  | [@bs.as "allow-pointer-lock"] `AllowPointerLock
+                  | [@bs.as "allow-popups"] `AllowPopups
+                  | [@bs.as "allow-same-origin"] `AllowSameOrigin
+                  | [@bs.as "allow-scripts"] `AllowScripts
+                  | [@bs.as "allow-top-navigation"] `AllowTopNavigation
+                ]
+                  =?,
+      ~allow: bool=?,
+      _unit
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~url,
-        ~position?,
-        ~id?,
-        ~className?,
-        ~display?,
-        ~height?,
-        ~width?,
-        ~allowFullScreen?,
-        ~styles?,
-        ~style?,
-        ~sandbox?,
-        ~allow?,
-        (),
-      ),
-    children,
-  );
+    React.element =
+    "default";
+};
