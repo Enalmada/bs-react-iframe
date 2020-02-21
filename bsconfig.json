@@ -21,7 +21,6 @@
     "reason-react"
   ],
   "bsc-flags": [
-    "-w -101",
     "-bs-super-errors"
   ],
   "refmt": 3
