@@ -1,82 +1,101 @@
-[@bs.module "react-iframe"] external reactClass: ReasonReact.reactClass = "default";
-
 /*
- url (required) - string the iframe url
+ Reference: https://github.com/svenanders/react-iframe/blob/master/src/types.d.ts
+*/
 
- position (optional) - string defaults to "absolute".
-
- id (optional) - string if set, adds the id parameter with the given value.
-
- className (optional) - string if set, adds the class parameter with the given value.
-
- display (optional) - string defaults to "block"
-
- height (optional) - string (1px > any number above 0, or 1% to 100%)
-
- width (optional) - string (1px > any number above 0, or 1% to 100%)
-
- allowFullScreen (optional) - if set, applies the allowFullScreen param
-
- styles (optional) - add any additional styles here. Will (intentionally) override any of the props above. For instance:
-
- sandbox (optional) - add optional sandbox values ("allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-top-navigation")
-
- allow (optional) - add optional allow values ("geolocation microphone camera midi encrypted-media")
- */
-
-[@bs.obj]
-external makeProps:
-  (
-    ~url: string,
-    ~position: string=?,
-    ~id: string=?,
-    ~className: string=?,
-    ~display: string=?,
-    ~height: string=?,
-    ~width: string=?,
-    ~allowFullScreen: bool=?,
-    ~styles: ReactDOMRe.Style.t=?,
-    ~style: ReactDOMRe.Style.t=?,
-    ~sandbox: string=?,
-    ~allow: string=?,
-    unit
-  ) =>
-  _ =
-  "";
-
-let make =
+module Frame = {
+  [@bs.module "react-iframe"] [@react.component]
+  external make:
     (
-      ~url,
-      ~position=?,
-      ~id=?,
-      ~className=?,
-      ~display=?,
-      ~height=?,
-      ~width=?,
-      ~allowFullScreen=?,
-      ~styles=?,
-      ~style=?,
-      ~sandbox=?,
-      ~allow=?,
-      children,
+      ~url: string,
+      ~src: string=?,
+      ~allowFullScreen: bool=?,
+      ~position: [@bs.string] [
+                   | [@bs.as "relative"] `Relative
+                   | [@bs.as "absolute"] `Absolute
+                   | [@bs.as "fixed"] `Fixed
+                   | [@bs.as "sticky"] `Sticky
+                   | [@bs.as "static"] `Static
+                   | [@bs.as "inherit"] `Inherit
+                   | [@bs.as "initial"] `Initial
+                   | [@bs.as "unset"] `Unset
+                 ]
+                   =?,
+      ~display: [@bs.string] [
+                  | [@bs.as "block"] `Block
+                  | [@bs.as "none"] `None
+                  | [@bs.as "inline"] `Inline
+                ]
+                  =?,
+      ~height: string=?,
+      ~width: string=?,
+      ~loading: [@bs.string] [
+                  | [@bs.as "auto"] `Auto
+                  | [@bs.as "eager"] `Eager
+                  | [@bs.as "lazy"] `Lazy
+                ]
+                  =?,
+      ~target: string=?,
+      ~importance: [@bs.string] [
+                     | [@bs.as "auto"] `Auto
+                     | [@bs.as "high"] `High
+                     | [@bs.as "low"] `Low
+                   ]
+                     =?,
+      ~overflow: string=?,
+      ~styles: ReactDOMRe.Style.t=?,
+      ~name: string=?,
+      ~allowpaymentrequest: bool=?,
+      ~referrerpolicy: [@bs.string] [
+                         | [@bs.as "no-referrer"] `NoReferrer
+                         | [@bs.as "no-referrer-when-downgrade"]
+                           `NoReferrerWhenDowngrade
+                         | [@bs.as "origin"] `Origin
+                         | [@bs.as "origin-when-cross-origin"]
+                           `OriginWhenCrossOrigin
+                         | [@bs.as "same-origin"] `SameOrigin
+                         | [@bs.as "strict-origin"] `StrictOrigin
+                         | [@bs.as "strict-origin-when-cross-origin"]
+                           `StrictOriginWhenCrossOrigin
+                         | [@bs.as "unsafe-url"] `UnsafeUrl
+                       ]
+                         =?,
+      ~onLoad: unit => unit=?,
+      ~onMouseOver: unit => unit=?,
+      ~onMouseOut: unit => unit=?,
+      ~frameBorder: int=?,
+      ~scrolling: [@bs.string] [
+                    | [@bs.as "auto"] `Auto
+                    | [@bs.as "yes"] `Yes
+                    | [@bs.as "no"] `No
+                  ]
+                    =?,
+      ~id: string=?,
+      ~ariaHidden: bool=?,
+      ~ariaLabel: string=?,
+      ~ariaLabelledby: string=?,
+      ~className: string=?,
+      ~sandbox: [@bs.string] [
+                  | [@bs.as "allow-forms"] `AllowForms
+                  | [@bs.as "allow-modals"] `AllowModals
+                  | [@bs.as "allow-orientation-lock"] `AllowOrientationLock
+                  | [@bs.as "allow-pointer-lock"] `AllowPointerLock
+                  | [@bs.as "allow-popups"] `AllowPopups
+                  | [@bs.as "allow-popups-to-escape-sandbox"]
+                    `AllowPopupsToEscapeSandbox
+                  | [@bs.as "allow-presentation"] `AllowPresentation
+                  | [@bs.as "allow-same-origin"] `AllowSameOrigin
+                  | [@bs.as "allow-scripts"] `AllowScripts
+                  | [@bs.as "allow-storage-access-by-user-activation"]
+                    `AllowStorageAccessByUserActivation
+                  | [@bs.as "allow-top-navigation"] `AllowTopNavigation
+                  | [@bs.as "allow-top-navigation-by-user-activation"]
+                    `AllowTopNavigationByUserActivation
+                ]
+                  =?,
+      ~allow: bool=?,
+      ~className: string=?,
+      ~title: string=?
     ) =>
-  ReasonReact.wrapJsForReason(
-    ~reactClass,
-    ~props=
-      makeProps(
-        ~url,
-        ~position?,
-        ~id?,
-        ~className?,
-        ~display?,
-        ~height?,
-        ~width?,
-        ~allowFullScreen?,
-        ~styles?,
-        ~style?,
-        ~sandbox?,
-        ~allow?,
-        (),
-      ),
-    children,
-  );
+    React.element =
+    "default";
+};

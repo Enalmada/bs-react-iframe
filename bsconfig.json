@@ -1,7 +1,14 @@
 {
   "name": "bs-react-iframe",
-  "reason": { "react-jsx": 2 },
-  "sources": [{ "dir": "src", "subdirs": true }],
+  "reason": {
+    "react-jsx": 3
+  },
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
   "package-specs": [
     {
       "module": "es6",
@@ -10,7 +17,11 @@
   ],
   "suffix": ".js",
   "namespace": false,
-  "bs-dependencies": ["reason-react"],
-  "bsc-flags": ["-bs-super-errors"],
+  "bs-dependencies": [
+    "reason-react"
+  ],
+  "bsc-flags": [
+    "-bs-super-errors"
+  ],
   "refmt": 3
 }
